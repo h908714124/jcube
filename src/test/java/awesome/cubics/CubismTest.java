@@ -10,11 +10,6 @@ class CubismTest {
     private final DepressedCubic cubism = DepressedCubic.create(-3, -1);
 
     @Test
-    void discriminant() {
-        System.out.println(cubism.getDiscriminant());
-    }
-
-    @Test
     void testGetSolution() {
         List<Complex> solutions = cubism.getSolutions();
         for (Complex solution : solutions) {

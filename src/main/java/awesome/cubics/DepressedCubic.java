@@ -7,7 +7,7 @@ import java.util.List;
 
 class DepressedCubic {
 
-    private final Complex half = Complex.valueOf(0.5);
+    private final Complex minusHalf = Complex.valueOf(0.5).multiply(-1);
 
     private final Complex p;
     private final Complex q;
@@ -22,9 +22,9 @@ class DepressedCubic {
     }
 
     List<Complex> getSolutions() {
-        Complex w = new Complex(5).sqrt().multiply(Complex.I).divide(2);
-        Complex c1 = half.subtract(w);
-        Complex c2 = half.add(w);
+        Complex t = getThing().sqrt();
+        Complex c1 = minusHalf.multiply(q).add(t);
+        Complex c2 = minusHalf.multiply(q).subtract(t);
         List<Complex> rootsOfC1 = c1.nthRoot(3);
         List<Complex> rootsOfC2 = c2.nthRoot(3);
         List<Complex> result = new ArrayList<>();
@@ -40,20 +40,7 @@ class DepressedCubic {
         return q.pow(2).divide(4).add(p.pow(3).divide(27));
     }
 
-    Complex getDiscriminant() {
-        return p.pow(3).multiply(4).add(q.pow(2).multiply(27));
-    }
-
-    public static void main(String[] args) {
-        Complex w = new Complex(5).sqrt().multiply(Complex.I).divide(2);
-        System.out.println(w.pow(2));
-    }
-
     Complex compute(Complex x) {
         return x.pow(3).add(x.multiply(p)).add(q);
-    }
-
-    double compute(double x) {
-        return compute(Complex.valueOf(x)).getReal();
     }
 }
