@@ -28,11 +28,9 @@ class DepressedCubic {
         List<Complex> rootsOfC1 = c1.nthRoot(3);
         List<Complex> rootsOfC2 = c2.nthRoot(3);
         List<Complex> result = new ArrayList<>();
-        for (Complex r1 : rootsOfC1) {
-            for (Complex r2 : rootsOfC2) {
-                result.add(r1.add(r2));
-            }
-        }
+        result.add(rootsOfC1.get(0).add(rootsOfC2.get(0)));
+        result.add(rootsOfC1.get(1).add(rootsOfC2.get(2)));
+        result.add(rootsOfC1.get(2).add(rootsOfC2.get(1)));
         return result;
     }
 
