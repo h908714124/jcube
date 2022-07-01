@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CubismTest {
 
@@ -55,6 +57,7 @@ class CubismTest {
     void rootsAreSolutions() {
         List<Complex> roots = Complex.valueOf(-1).nthRoot(9);
         List<Complex> solutions = roots.stream()
+                .filter(r -> r.getImaginary() > 0)
                 .map(r -> r.add(r.conjugate()))
                 .filter(r -> cubism.compute(r).abs() < 0.01)
                 .distinct().collect(Collectors.toList());
@@ -64,6 +67,19 @@ class CubismTest {
         System.out.println(solutions.get(1).divide(solutions.get(0)));
         System.out.println(solutions.get(2).divide(solutions.get(1)));
         System.out.println(solutions.get(2).divide(solutions.get(0)));
+    }
+
+    @Test
+    void testExplicit() {
+        Complex r = Complex.valueOf(0.9396926207859084, 0.3420201433256687);
+        for (int i = 1; i <= 17; i++) {
+            assertFalse(r.pow(i).subtract(Complex.ONE).abs() < 0.01);
+        }
+        assertTrue(r.pow(18).subtract(Complex.ONE).abs() < 0.01);
+        Complex s0 = r.add(r.pow(8).multiply(-1)); // r+r^17
+        Complex s1 = r.pow(5).add(r.pow(4).multiply(-1)); // r^5+r^13
+        Complex s2 = r.pow(7).add(r.pow(2).multiply(-1)); // r^7+r^11
+        checkSolutions(List.of(s0, s1, s2));
     }
 
     private List<Complex> firstSummand() {
@@ -77,13 +93,9 @@ class CubismTest {
     private Complex thirdRootOfTwo() {
         return Complex.valueOf(2).nthRoot(3).get(0);
     }
-
-    private void checkRoots(List<Complex> roots) {
-        List<Complex> solutions = roots.stream().map(r -> r.add(r.conjugate())).collect(Collectors.toList());
-        checkSolutions(solutions);
-    }
-
+ 
     private void checkSolutions(List<Complex> solutions) {
+        assertFalse(solutions.isEmpty(), "NOTHING");
         int n = 0;
         for (Complex solution : solutions) {
             Complex result = cubism.compute(solution);
