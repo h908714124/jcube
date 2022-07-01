@@ -1,12 +1,13 @@
 package awesome.cubics;
 
 import org.apache.commons.math3.complex.Complex;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CubismTest {
 
@@ -55,9 +56,14 @@ class CubismTest {
         List<Complex> roots = Complex.valueOf(-1).nthRoot(9);
         List<Complex> solutions = roots.stream()
                 .map(r -> r.add(r.conjugate()))
-                .filter(r -> cubism.compute(r.add(r.conjugate())).abs() < 0.01)
+                .filter(r -> cubism.compute(r).abs() < 0.01)
                 .distinct().collect(Collectors.toList());
         checkSolutions(solutions);
+        // what are the relations?
+        System.out.println(solutions.get(0).add(solutions.get(1)).add(solutions.get(2)));
+        System.out.println(solutions.get(1).divide(solutions.get(0)));
+        System.out.println(solutions.get(2).divide(solutions.get(1)));
+        System.out.println(solutions.get(2).divide(solutions.get(0)));
     }
 
     private List<Complex> firstSummand() {
@@ -72,11 +78,22 @@ class CubismTest {
         return Complex.valueOf(2).nthRoot(3).get(0);
     }
 
+    private void checkRoots(List<Complex> roots) {
+        List<Complex> solutions = roots.stream().map(r -> r.add(r.conjugate())).collect(Collectors.toList());
+        checkSolutions(solutions);
+    }
+
     private void checkSolutions(List<Complex> solutions) {
+        int n = 0;
         for (Complex solution : solutions) {
             Complex result = cubism.compute(solution);
-            Assertions.assertTrue(result.abs() < 0.01);
-            System.out.println("SOLUTION: " + solution);
+            if (result.abs() < 0.01) {
+                System.out.println("SOLUTION: " + solution);
+                n++;
+            } else {
+                System.out.println("FAIL: " + solution);
+            }
         }
+        assertEquals(solutions.size(), n);
     }
 }
