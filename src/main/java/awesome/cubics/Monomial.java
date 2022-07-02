@@ -30,10 +30,14 @@ class Monomial {
     }
 
     Monomial raise(int n) {
+        if (n == 0) {
+            return create(1, 0);
+        }
         if (n == 1) {
             return this;
         }
-        return create(coefficient, power * n);
+        int newCoefficient = coefficient > 0 ? coefficient : coefficient * (n % 2 == 0 ? -1 : 1);
+        return create(newCoefficient, power * n);
     }
 
     Monomial powermod(int n) {
@@ -60,13 +64,17 @@ class Monomial {
         return new Monomial(coefficient, power);
     }
 
+    boolean cancels(Monomial other) {
+        return power == other.power && coefficient + other.coefficient == 0;
+    }
+
     @Override
     public String toString() {
         String prefix = coefficient >= 0 ? "+" : "-";
         if (power == 0) {
             return prefix + Math.abs(coefficient);
         }
-        String base = prefix + " " + (coefficient == 1 ? "" : Math.abs(coefficient)) + "r";
+        String base = prefix + " " + (Math.abs(coefficient) == 1 ? "" : Math.abs(coefficient)) + "r";
         if (power == 1) {
             return base;
         }
@@ -78,7 +86,7 @@ class Monomial {
             return "";
         }
         String prefix = coefficient >= 0 ? "" : "- ";
-        String base = prefix + (coefficient == 1 ? "" : Math.abs(coefficient)) + "r";
+        String base = prefix + (Math.abs(coefficient) == 1 ? "" : Math.abs(coefficient)) + "r";
         if (power == 1) {
             return base;
         }

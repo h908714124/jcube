@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BinomialTest {
 
-    private final Binomial binomial = new Binomial();
+    private final Binomial binomial = Binomial.create(Monomial.create(1, 1), Monomial.create(-1, 8));
 
     @Test
     void binominalCoefficients() {

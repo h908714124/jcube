@@ -1,5 +1,6 @@
 package awesome.cubics;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +10,35 @@ class Polynomial {
 
     Polynomial(List<Monomial> monomials) {
         this.monomials = monomials;
+    }
+
+    Polynomial add(Polynomial other) {
+        List<Monomial> result = new ArrayList<>(monomials.size() + other.monomials.size());
+        result.addAll(monomials);
+        result.addAll(other.monomials);
+        return new Polynomial(result);
+    }
+
+    Polynomial subtract(Polynomial other) {
+        return add(other.multiply(-1));
+    }
+
+    Polynomial simplify() {
+        List<Monomial> result = new ArrayList<>(monomials.size());
+        outer:
+        for (Monomial m : monomials) {
+            for (Monomial o : monomials) {
+                if (m.cancels(o)) {
+                    continue outer;
+                }
+            }
+            result.add(m);
+        }
+        return new Polynomial(result);
+    }
+
+    Polynomial multiply(int n) {
+        return new Polynomial(monomials.stream().map(m -> m.multiply(n)).toList());
     }
 
     // r^n == 1

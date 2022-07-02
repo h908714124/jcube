@@ -5,14 +5,27 @@ import java.util.List;
 
 class Binomial {
 
-    Polynomial power(Monomial m1, Monomial m2, int n) {
+    private final Monomial m1;
+    private final Monomial m2;
+
+    private Binomial(Monomial m1, Monomial m2) {
+        this.m1 = m1;
+        this.m2 = m2;
+    }
+
+    static Binomial create(Monomial m1, Monomial m2) {
+        return new Binomial(m1, m2);
+    }
+
+    Polynomial power(int n) {
         int[] coefficients = binominalCoefficients(n);
         List<Monomial> result = new ArrayList<>(coefficients.length);
         for (int i = 0; i < coefficients.length; i++) {
             int c = coefficients[i];
             Monomial p1 = m1.raise(n - i);
             Monomial p2 = m2.raise(i);
-            result.add(p1.multiply(p2).multiply(c));
+            Monomial m = p1.multiply(p2).multiply(c);
+            result.add(m);
         }
         return new Polynomial(result);
     }
