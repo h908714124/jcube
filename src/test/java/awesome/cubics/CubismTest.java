@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -60,7 +59,7 @@ class CubismTest {
                 .filter(r -> r.getImaginary() > 0)
                 .map(r -> r.add(r.conjugate()))
                 .filter(r -> cubism.compute(r).abs() < 0.01)
-                .distinct().collect(Collectors.toList());
+                .distinct().toList();
         checkSolutions(solutions);
         // what are the relations?
         System.out.println(solutions.get(0).add(solutions.get(1)).add(solutions.get(2)));

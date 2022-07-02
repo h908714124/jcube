@@ -2,7 +2,6 @@ package awesome.cubics;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 class Polynomial {
 
@@ -43,12 +42,12 @@ class Polynomial {
 
     // r^n == 1
     Polynomial powermod(int n) {
-        return new Polynomial(monomials.stream().map(m -> m.powermod(n)).collect(Collectors.toList()));
+        return new Polynomial(monomials.stream().map(m -> m.powermod(n)).toList());
     }
 
     // r^n == -1
     Polynomial powermodFlip(int n) {
-        return new Polynomial(monomials.stream().map(m -> m.powermodFlip(n)).collect(Collectors.toList()));
+        return new Polynomial(monomials.stream().map(m -> m.powermodFlip(n)).toList());
     }
 
     @Override
