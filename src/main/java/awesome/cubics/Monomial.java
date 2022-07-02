@@ -15,7 +15,7 @@ class Monomial {
     }
 
     Monomial multiply(Monomial monomial) {
-        return create(coefficient * monomial.coefficient, power * monomial.power);
+        return create(coefficient * monomial.coefficient, power + monomial.power);
     }
 
     Monomial pow(int n) {
@@ -29,6 +29,33 @@ class Monomial {
         return result;
     }
 
+    Monomial raise(int n) {
+        if (n == 1) {
+            return this;
+        }
+        return create(coefficient, power * n);
+    }
+
+    Monomial powermod(int n) {
+        if (power < n) {
+            return this;
+        }
+        return create(coefficient, power % n);
+    }
+
+    Monomial powermodFlip(int n) {
+        if (power < n) {
+            return this;
+        }
+        int sign = 1;
+        int newPower = power;
+        while (newPower >= n) {
+            newPower -= n;
+            sign *= -1;
+        }
+        return create(sign * coefficient, newPower);
+    }
+    
     static Monomial create(int coefficient, int power) {
         return new Monomial(coefficient, power);
     }

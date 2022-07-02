@@ -10,7 +10,9 @@ class Binomial {
         List<Monomial> result = new ArrayList<>(coefficients.length);
         for (int i = 0; i < coefficients.length; i++) {
             int c = coefficients[i];
-            result.add(m1.pow(n - i).multiply(m2.pow(i)).multiply(c));
+            Monomial p1 = m1.raise(n - i);
+            Monomial p2 = m2.raise(i);
+            result.add(p1.multiply(p2).multiply(c));
         }
         return new Polynomial(result);
     }

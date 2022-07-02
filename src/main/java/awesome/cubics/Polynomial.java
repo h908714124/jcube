@@ -1,13 +1,24 @@
 package awesome.cubics;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Polynomial {
-    
+
     private final List<Monomial> monomials;
 
     Polynomial(List<Monomial> monomials) {
         this.monomials = monomials;
+    }
+
+    // r^n == 1
+    Polynomial powermod(int n) {
+        return new Polynomial(monomials.stream().map(m -> m.powermod(n)).collect(Collectors.toList()));
+    }
+
+    // r^n == -1
+    Polynomial powermodFlip(int n) {
+        return new Polynomial(monomials.stream().map(m -> m.powermodFlip(n)).collect(Collectors.toList()));
     }
 
     @Override
