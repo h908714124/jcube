@@ -23,6 +23,11 @@ class Polynomial {
     }
 
     Polynomial simplify() {
+        return new Polynomial(simplifyInternal());
+    }
+
+    private List<Monomial> simplifyInternal() {
+        // TODO Terme zusammenfassen
         List<Monomial> result = new ArrayList<>(monomials.size());
         outer:
         for (Monomial m : monomials) {
@@ -33,7 +38,7 @@ class Polynomial {
             }
             result.add(m);
         }
-        return new Polynomial(result);
+        return result;
     }
 
     Polynomial multiply(int n) {

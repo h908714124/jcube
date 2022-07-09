@@ -1,5 +1,7 @@
 package awesome.cubics;
 
+import java.util.Objects;
+
 class Monomial {
 
     private final int coefficient;
@@ -91,5 +93,18 @@ class Monomial {
             return base;
         }
         return base + "^" + power;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Monomial monomial = (Monomial) o;
+        return coefficient == monomial.coefficient && power == monomial.power;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(coefficient, power);
     }
 }
