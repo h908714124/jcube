@@ -10,6 +10,6 @@ c = \omega^7 - \omega^2 \approx -1.5320888862379558}$$
 
 are the solutions of $x^3 − 3x − 1$. The following relations hold:
 
-$$\displaylines{a^2 + c = b^2 + a \\
-b^2 + a = c^2 + b \\
-c^2 + b = a^2 + c}$$
+$$\displaylines{a^2 + c = 2 \\
+b^2 + a = 2 \\
+c^2 + b = 2}$$

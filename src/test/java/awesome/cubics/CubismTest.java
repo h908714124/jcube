@@ -78,6 +78,8 @@ class CubismTest {
         Complex a = r.subtract(r.pow(8));
         Complex b = r.pow(5).subtract(r.pow(4));
         Complex c = r.pow(7).subtract(r.pow(2));
+        System.out.println(c.pow(2).add(b));
+//        System.out.println(b.pow(2).add(a));
         checkSolutions(List.of(a, b, c));
     }
 
