@@ -4,7 +4,7 @@
 
 Let $\omega$ be a primitive 18th root of unity, then
 
-$$\displaylines{a = \omega - \omega^7 \\
+$$\displaylines{a = \omega - \omega^8 \\
 b = \omega^5 - \omega^4 \\
 c = \omega^7 - \omega^2}$$
 
