@@ -22,6 +22,14 @@ record Binomial(Monomial m1, Monomial m2) {
         return new Polynomial(result);
     }
 
+    Polynomial asPolynomial() {
+        return power(1);
+    }
+
+    Polynomial multiply(int n) {
+        return asPolynomial().multiply(n);
+    }
+
     int[] binominalCoefficients(int n) {
         int[] result = new int[n + 1];
         for (int k = 0; k <= n; k++) {

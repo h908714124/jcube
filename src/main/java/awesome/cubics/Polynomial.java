@@ -1,6 +1,7 @@
 package awesome.cubics;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,10 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.reducing;
 
 record Polynomial(List<Monomial> monomials) {
+
+    Polynomial(List<Monomial> monomials) {
+        this.monomials = simplify(monomials);
+    }
 
     Polynomial add(Polynomial other) {
         List<Monomial> result = new ArrayList<>(monomials.size() + other.monomials.size());
@@ -22,11 +27,7 @@ record Polynomial(List<Monomial> monomials) {
         return add(other.multiply(-1));
     }
 
-    Polynomial simplify() {
-        return new Polynomial(simplifyInternal());
-    }
-
-    private List<Monomial> simplifyInternal() {
+    private static List<Monomial> simplify(List<Monomial> monomials) {
         Map<Integer, Optional<Monomial>> m = monomials.stream().collect(groupingBy(
                 Monomial::power,
                 LinkedHashMap::new,
@@ -38,6 +39,7 @@ record Polynomial(List<Monomial> monomials) {
                 result.add(mon);
             }
         }
+        Collections.sort(result);
         return result;
     }
 

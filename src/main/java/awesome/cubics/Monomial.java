@@ -1,8 +1,13 @@
 package awesome.cubics;
 
+import java.util.Comparator;
+
 import static awesome.cubics.Preconditions.checkState;
 
-record Monomial(int coefficient, int power) {
+record Monomial(int coefficient, int power) implements Comparable<Monomial> {
+
+    private static final Comparator<Monomial> COMP = Comparator.comparingInt(Monomial::power).reversed()
+            .thenComparing(Monomial::coefficient);
 
     Monomial multiply(int n) {
         return monomial(coefficient * n, power);
@@ -94,5 +99,10 @@ record Monomial(int coefficient, int power) {
     Monomial add(Monomial other) {
         checkState(this.power == other.power, "power mismatch");
         return new Monomial(this.coefficient + other.coefficient, this.power);
+    }
+
+    @Override
+    public int compareTo(Monomial o) {
+        return COMP.compare(this, o);
     }
 }
