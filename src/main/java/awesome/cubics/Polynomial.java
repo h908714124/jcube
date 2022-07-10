@@ -1,15 +1,15 @@
 package awesome.cubics;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
-class Polynomial {
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.reducing;
 
-    private final List<Monomial> monomials;
-
-    Polynomial(List<Monomial> monomials) {
-        this.monomials = monomials;
-    }
+record Polynomial(List<Monomial> monomials) {
 
     Polynomial add(Polynomial other) {
         List<Monomial> result = new ArrayList<>(monomials.size() + other.monomials.size());
@@ -27,16 +27,16 @@ class Polynomial {
     }
 
     private List<Monomial> simplifyInternal() {
-        // TODO Terme zusammenfassen
+        Map<Integer, Optional<Monomial>> m = monomials.stream().collect(groupingBy(
+                Monomial::power,
+                LinkedHashMap::new,
+                reducing(Monomial::add)));
         List<Monomial> result = new ArrayList<>(monomials.size());
-        outer:
-        for (Monomial m : monomials) {
-            for (Monomial o : monomials) {
-                if (m.cancels(o)) {
-                    continue outer;
-                }
+        for (Optional<Monomial> monomial : m.values()) {
+            Monomial mon = monomial.orElseThrow();
+            if (!mon.isZero()) {
+                result.add(mon);
             }
-            result.add(m);
         }
         return result;
     }

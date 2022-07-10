@@ -107,10 +107,4 @@ class CubismTest {
         }
         assertEquals(solutions.size(), n);
     }
-
-    @Test
-    void bobby() {
-        List<Complex> roots = Complex.valueOf(-1).nthRoot(3);
-        System.out.println(roots.get(0).subtract(roots.get(0).pow(2)));
-    }
 }

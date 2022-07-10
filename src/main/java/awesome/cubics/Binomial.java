@@ -3,17 +3,9 @@ package awesome.cubics;
 import java.util.ArrayList;
 import java.util.List;
 
-class Binomial {
+record Binomial(Monomial m1, Monomial m2) {
 
-    private final Monomial m1;
-    private final Monomial m2;
-
-    private Binomial(Monomial m1, Monomial m2) {
-        this.m1 = m1;
-        this.m2 = m2;
-    }
-
-    static Binomial create(Monomial m1, Monomial m2) {
+    static Binomial binomial(Monomial m1, Monomial m2) {
         return new Binomial(m1, m2);
     }
 

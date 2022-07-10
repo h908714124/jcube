@@ -2,11 +2,13 @@ package awesome.cubics;
 
 import org.junit.jupiter.api.Test;
 
+import static awesome.cubics.Binomial.binomial;
+import static awesome.cubics.Monomial.monomial;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PolynomialTest {
 
-    private final Binomial root = Binomial.create(Monomial.create(1, 1), Monomial.create(-1, 8));
+    private final Binomial root = binomial(monomial(1, 1), monomial(-1, 8));
 
     @Test
     void testPoly() {

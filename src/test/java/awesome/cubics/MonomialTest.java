@@ -8,7 +8,7 @@ class MonomialTest {
 
     @Test
     void testRaise() {
-        Monomial m = Monomial.create(-1, 4).raise(3);
+        Monomial m = Monomial.monomial(-1, 4).raise(3);
         assertEquals("- r^12", m.toString());
     }
 }

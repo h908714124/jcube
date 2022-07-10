@@ -1,28 +1,20 @@
 package awesome.cubics;
 
-import java.util.Objects;
+import static awesome.cubics.Preconditions.checkState;
 
-class Monomial {
-
-    private final int coefficient;
-    private final int power;
-
-    private Monomial(int coefficient, int power) {
-        this.coefficient = coefficient;
-        this.power = power;
-    }
+record Monomial(int coefficient, int power) {
 
     Monomial multiply(int n) {
-        return create(coefficient * n, power);
+        return monomial(coefficient * n, power);
     }
 
     Monomial multiply(Monomial monomial) {
-        return create(coefficient * monomial.coefficient, power + monomial.power);
+        return monomial(coefficient * monomial.coefficient, power + monomial.power);
     }
 
     Monomial pow(int n) {
         if (n == 0) {
-            return create(1, 0);
+            return monomial(1, 0);
         }
         Monomial result = this;
         for (int i = 1; i < n; i++) {
@@ -33,20 +25,20 @@ class Monomial {
 
     Monomial raise(int n) {
         if (n == 0) {
-            return create(1, 0);
+            return monomial(1, 0);
         }
         if (n == 1) {
             return this;
         }
         int newCoefficient = coefficient > 0 ? coefficient : coefficient * (n % 2 == 0 ? -1 : 1);
-        return create(newCoefficient, power * n);
+        return monomial(newCoefficient, power * n);
     }
 
     Monomial powermod(int n) {
         if (power < n) {
             return this;
         }
-        return create(coefficient, power % n);
+        return monomial(coefficient, power % n);
     }
 
     Monomial powermodFlip(int n) {
@@ -59,10 +51,10 @@ class Monomial {
             newPower -= n;
             sign *= -1;
         }
-        return create(sign * coefficient, newPower);
+        return monomial(sign * coefficient, newPower);
     }
-    
-    static Monomial create(int coefficient, int power) {
+
+    static Monomial monomial(int coefficient, int power) {
         return new Monomial(coefficient, power);
     }
 
@@ -95,16 +87,12 @@ class Monomial {
         return base + "^" + power;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Monomial monomial = (Monomial) o;
-        return coefficient == monomial.coefficient && power == monomial.power;
+    boolean isZero() {
+        return coefficient == 0;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(coefficient, power);
+    Monomial add(Monomial other) {
+        checkState(this.power == other.power, "power mismatch");
+        return new Monomial(this.coefficient + other.coefficient, this.power);
     }
 }
