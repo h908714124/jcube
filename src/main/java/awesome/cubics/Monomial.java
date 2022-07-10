@@ -1,6 +1,7 @@
 package awesome.cubics;
 
 import java.util.Comparator;
+import java.util.List;
 
 import static awesome.cubics.Preconditions.checkState;
 
@@ -15,6 +16,10 @@ record Monomial(int coefficient, int power) implements Comparable<Monomial> {
 
     Monomial multiply(Monomial monomial) {
         return monomial(coefficient * monomial.coefficient, power + monomial.power);
+    }
+
+    Polynomial poly() {
+        return new Polynomial(List.of(this));
     }
 
     Monomial pow(int n) {
@@ -85,6 +90,9 @@ record Monomial(int coefficient, int power) implements Comparable<Monomial> {
             return "";
         }
         String prefix = coefficient >= 0 ? "" : "- ";
+        if (power == 0) {
+            return prefix + Math.abs(coefficient);
+        }
         String base = prefix + (Math.abs(coefficient) == 1 ? "" : Math.abs(coefficient)) + "r";
         if (power == 1) {
             return base;

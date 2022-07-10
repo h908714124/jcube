@@ -12,6 +12,10 @@ import static java.util.stream.Collectors.reducing;
 
 record Polynomial(List<Monomial> monomials) {
 
+    static Polynomial constant(int coefficient) {
+        return new Monomial(coefficient, 0).poly();
+    }
+
     Polynomial(List<Monomial> monomials) {
         this.monomials = simplify(monomials);
     }

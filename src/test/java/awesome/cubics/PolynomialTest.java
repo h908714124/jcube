@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static awesome.cubics.Binomial.binomial;
 import static awesome.cubics.Monomial.monomial;
+import static awesome.cubics.Polynomial.constant;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PolynomialTest {
@@ -40,13 +41,14 @@ class PolynomialTest {
     }
 
     @Test
-    void testStuff() {
-        // a^2 + c = b^2 + a
-        assertEquals(a.pow(2).add(c).powermodFlip(9), b.pow(2).add(a).powermodFlip(9));
-        // b^2 + a = c^2 + b
-        assertEquals(b.pow(2).add(a).powermodFlip(9), c.pow(2).add(b).powermodFlip(9));
-        // c^2 + b = a^2 + c
-        assertEquals(c.pow(2).add(b).powermodFlip(9), a.pow(2).add(c).powermodFlip(9));
+    void testRelations() {
+        Polynomial constant2 = constant(2);
+        // a^2 + c = 2
+        assertEquals(constant2, a.pow(2).add(c).powermodFlip(9));
+        // b^2 + a = 2
+        assertEquals(constant2, b.pow(2).add(a).powermodFlip(9));
+        // c^2 + b = 2
+        assertEquals(constant2, c.pow(2).add(b).powermodFlip(9));
     }
 
     // compute r^3 - 3r, where r is an 18th root of unity
