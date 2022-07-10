@@ -75,10 +75,10 @@ class CubismTest {
             assertFalse(r.pow(i).subtract(Complex.ONE).abs() < 0.01);
         }
         assertTrue(r.pow(18).subtract(Complex.ONE).abs() < 0.01);
-        Complex s0 = r.add(r.pow(8).multiply(-1)); // r+r^17
-        Complex s1 = r.pow(5).add(r.pow(4).multiply(-1)); // r^5+r^13
-        Complex s2 = r.pow(7).add(r.pow(2).multiply(-1)); // r^7+r^11
-        checkSolutions(List.of(s0, s1, s2));
+        Complex a = r.subtract(r.pow(8));
+        Complex b = r.pow(5).subtract(r.pow(4));
+        Complex c = r.pow(7).subtract(r.pow(2));
+        checkSolutions(List.of(a, b, c));
     }
 
     private List<Complex> firstSummand() {
