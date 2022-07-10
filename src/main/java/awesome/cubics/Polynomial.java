@@ -23,6 +23,10 @@ record Polynomial(List<Monomial> monomials) {
         return new Polynomial(result);
     }
 
+    Polynomial add(Binomial other) {
+        return add(other.asPolynomial());
+    }
+
     Polynomial subtract(Polynomial other) {
         return add(other.multiply(-1));
     }
@@ -45,6 +49,16 @@ record Polynomial(List<Monomial> monomials) {
 
     Polynomial multiply(int n) {
         return new Polynomial(monomials.stream().map(m -> m.multiply(n)).toList());
+    }
+
+    Polynomial multiply(Polynomial other) {
+        List<Monomial> monomials = new ArrayList<>(this.monomials.size() * other.monomials.size());
+        for (Monomial m : this.monomials) {
+            for (Monomial n : other.monomials) {
+                monomials.add(m.multiply(n));
+            }
+        }
+        return new Polynomial(monomials);
     }
 
     // r^n == 1

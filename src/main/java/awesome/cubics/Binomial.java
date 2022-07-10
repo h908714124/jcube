@@ -9,7 +9,7 @@ record Binomial(Monomial m1, Monomial m2) {
         return new Binomial(m1, m2);
     }
 
-    Polynomial power(int n) {
+    Polynomial pow(int n) {
         int[] coefficients = binominalCoefficients(n);
         List<Monomial> result = new ArrayList<>(coefficients.length);
         for (int i = 0; i < coefficients.length; i++) {
@@ -23,7 +23,7 @@ record Binomial(Monomial m1, Monomial m2) {
     }
 
     Polynomial asPolynomial() {
-        return power(1);
+        return pow(1);
     }
 
     Polynomial multiply(int n) {
