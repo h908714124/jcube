@@ -12,7 +12,7 @@ $$\displaylines{a := \omega - \omega^8 \approx 1.8793852415718169\\
 b := \omega^5 - \omega^4 \approx -0.3472963553338607\\
 c := \omega^7 - \omega^2 \approx -1.5320888862379558}$$
 
-are the three roots of $x^3 − 3x − 1$. The roots are algebraically related as follows:
+are the three roots of $x^3 − 3x − 1$. There are three algebraic relations between these numbers:
 
 $$\displaylines{a^2 + c = 2 \\
 b^2 + a = 2 \\
