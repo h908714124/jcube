@@ -17,7 +17,7 @@ are the solutions of $x^3 − 3x = 1$.
 $$\displaylines{ (x - a) (x - b) (x - c) \\
 = (x - \omega^7 + \omega^2) (x - \omega^5 + \omega^4) (x - \omega + \omega^8) \\
 = x^3 + x^2 (- \omega^7 + \omega^2 - \omega^5 + \omega^4 - \omega + \omega^8) \\
-\+ x (\omega^6 - \omega^{13} - \omega^5 + \omega^{12} + \omega^8 - \omega^{15} - \omega^8 + \omega^{10} + \omega^{12} - \omega^{11} - \omega^7 + \omega^6) \\
+\+ x (\omega^6 - \omega^{13} - \omega^5 + \omega^{12} + \omega^8 - \omega^{15} - \omega^3 + \omega^{10} + \omega^{12} - \omega^{11} - \omega^7 + \omega^6) \\
 \- \omega^{13} + \omega^{20} + \omega^{12} - \omega^{19} + \omega^8 - \omega^{15} - \omega^7 + \omega^{14}}$$
 
 There are three relations between these numbers:
