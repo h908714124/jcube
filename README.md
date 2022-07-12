@@ -18,7 +18,7 @@ $$\displaylines{a^2 + b = 2 \\
 b^2 + c = 2 \\
 c^2 + a = 2}$$
 
-Note, these relations also hold for $$a = b = c = 1$$.
+Note, these relations also hold for $a = b = c = 1$.
 
 $$\displaylines{a^2 + b \\
 = (\omega^7 - \omega^2)^2 + (\omega^5 - \omega^4) \\
