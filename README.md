@@ -17,3 +17,11 @@ are the solutions of $x^3 − 3x = 1$. There are three algebraic relations betwe
 $$\displaylines{a^2 + b = 2 \\
 b^2 + c = 2 \\
 c^2 + a = 2}$$
+
+Note, these relations also hold for $$a = b = c = 1$$.
+
+$$\displaylines{a^2 + b \\
+= (\omega^7 - \omega^2)^2 + (\omega^5 - \omega^4)
+= (\omega^14 - 2 \omega^9 + \omega^4) + (\omega^5 - \omega^4)
+= (- \omega^5 + 2 + \omega^4) + (\omega^5 - \omega^4)
+= 2}$$

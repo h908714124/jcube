@@ -35,6 +35,17 @@ record Polynomial(List<Monomial> monomials) {
         return add(other.multiply(-1));
     }
 
+    Polynomial pow(int n) {
+        if (n == 0) {
+            return constant(1);
+        }
+        Polynomial result = this;
+        for (int i = 1; i < n; i++) {
+            result = result.multiply(this);
+        }
+        return result;
+    }
+
     private static List<Monomial> simplify(List<Monomial> monomials) {
         Map<Integer, Optional<Monomial>> m = monomials.stream().collect(groupingBy(
                 Monomial::power,
