@@ -9,6 +9,6 @@ class MonomialTest {
     @Test
     void testRaise() {
         Monomial m = Monomial.monomial(-1, 4).raise(3);
-        assertEquals("- r^12", m.toString());
+        assertEquals("- x^12", m.toString());
     }
 }

@@ -18,19 +18,31 @@ class PolynomialTest {
     @Test
     void testPoly() {
         Polynomial polynomial = c.pow(5);
-        assertEquals("- 10r^8 - 5r^6 + r^5 - r^4 + 5r^3 + 10r", polynomial.powermodFlip(9).toString());
+        assertEquals("- 10x^8 - 5x^6 + x^5 - x^4 + 5x^3 + 10x", polynomial.powermodFlip(9).toString());
     }
 
     @Test
     void testPow1() {
         Polynomial polynomial = c.pow(1);
-        assertEquals("- r^8 + r", polynomial.toString());
+        assertEquals("- x^8 + x", polynomial.toString());
     }
 
     @Test
     void testPow3() {
         Polynomial polynomial = c.pow(3);
-        assertEquals("- 3r^8 - r^6 + r^3 + 3r", polynomial.powermodFlip(9).toString());
+        assertEquals("- 3x^8 - x^6 + x^3 + 3x", polynomial.powermodFlip(9).toString());
+    }
+
+    @Test
+    void testMod() {
+        assertEquals("x^8 - x^7 + x^6 - x^5 + x^4 - x^3 + x^2 - x", monomial("-x^13")
+                .add(monomial("x^20"))
+                .add(monomial("x^12"))
+                .add(monomial("-x^19"))
+                .add(monomial("x^8"))
+                .add(monomial("-x^15"))
+                .add(monomial("-x^7"))
+                .add(monomial("x^14")).powermodFlip(9).toString());
     }
 
     @Test

@@ -75,19 +75,22 @@ record Monomial(int coefficient, int power) implements Comparable<Monomial> {
             return new Monomial(getCoefficient(tokens[0]), parseInt(tokens[1])).poly();
         }
         for (int i = 0; i < s.length(); i++) {
-            if (!Character.isDigit(s.charAt(i))) {
+            char c = s.charAt(i);
+            if (!(c == '-' || c == ' ' || Character.isDigit(c))) {
                 return new Monomial(getCoefficient(s), 1).poly();
             }
         }
-        return new Monomial(parseInt(s), 0).poly();
+        return new Monomial(getCoefficient(s), 0).poly();
     }
 
     private static int getCoefficient(String token) {
         StringBuilder sb = new StringBuilder();
         char[] chars = token.toCharArray();
         for (char c : chars) {
-            if (Character.isDigit(c)) {
-                sb.append(c);
+            if (c == '-' || c == ' ' || Character.isDigit(c)) {
+                if (c != ' ') {
+                    sb.append(c);
+                }
             } else {
                 break;
             } 
@@ -95,7 +98,11 @@ record Monomial(int coefficient, int power) implements Comparable<Monomial> {
         if (sb.length() == 0) {
             return 1;
         }
-        return parseInt(sb.toString());
+        String result = sb.toString();
+        if (result.equals("-")) {
+            return -1;
+        }
+        return parseInt(result);
     }
 
     @Override
