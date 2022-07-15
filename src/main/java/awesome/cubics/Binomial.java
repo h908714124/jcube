@@ -19,15 +19,15 @@ record Binomial(Monomial m1, Monomial m2) {
             Monomial m = p1.multiply(p2).multiply(c);
             result.add(m);
         }
-        return new Polynomial(result);
+        return Polynomial.create(result);
     }
 
-    Polynomial asPolynomial() {
+    Polynomial poly() {
         return pow(1);
     }
 
     Polynomial multiply(int n) {
-        return asPolynomial().multiply(n);
+        return poly().multiply(n);
     }
 
     int[] binominalCoefficients(int n) {

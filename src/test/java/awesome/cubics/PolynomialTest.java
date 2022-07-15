@@ -13,7 +13,7 @@ class PolynomialTest {
     private final Binomial b = binomial(monomial(1, 5), monomial(-1, 4));
     private final Binomial c = binomial(monomial(1, 1), monomial(-1, 8));
 
-    private final Polynomial one = binomial(monomial(1, 3), monomial(-1, 6)).asPolynomial();
+    private final Polynomial one = binomial(monomial(1, 3), monomial(-1, 6)).poly();
 
     @Test
     void testPoly() {
@@ -49,6 +49,17 @@ class PolynomialTest {
         assertEquals(constant2, b.pow(2).add(c).powermodFlip(9));
         // c^2 + a = 2
         assertEquals(constant2, c.pow(2).add(a).powermodFlip(9));
+    }
+
+    @Test
+    void factor18() {
+        Polynomial f1 = monomial("x").subtract(monomial("1"));
+        Polynomial f2 = monomial("x").add(monomial("1"));
+        Polynomial f3 = monomial("x^2").add(monomial("x")).add(monomial("1"));
+        Polynomial f6 = monomial("x^2").subtract(monomial("x")).add(monomial("1"));
+        Polynomial f9 = monomial("x^6").add(monomial("x^3")).add(monomial("1"));
+        Polynomial f18 = monomial("x^6").subtract(monomial("x^3")).add(monomial("1"));
+        assertEquals(monomial("x^18").subtract(monomial("1")), f1.multiply(f2).multiply(f3).multiply(f6).multiply(f9).multiply(f18));
     }
 
     // compute r^3 - 3r, where r is an 18th root of unity

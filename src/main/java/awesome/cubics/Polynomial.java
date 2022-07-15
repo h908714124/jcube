@@ -16,6 +16,10 @@ record Polynomial(List<Monomial> monomials) {
         return new Monomial(coefficient, 0).poly();
     }
 
+    static Polynomial create(List<Monomial> monomials) {
+        return new Polynomial(monomials);
+    }
+
     Polynomial(List<Monomial> monomials) {
         this.monomials = simplify(monomials);
     }
@@ -24,15 +28,23 @@ record Polynomial(List<Monomial> monomials) {
         List<Monomial> result = new ArrayList<>(monomials.size() + other.monomials.size());
         result.addAll(monomials);
         result.addAll(other.monomials);
-        return new Polynomial(result);
+        return create(result);
     }
 
     Polynomial add(Binomial other) {
-        return add(other.asPolynomial());
+        return add(other.poly());
+    }
+
+    Polynomial add(Monomial other) {
+        return add(other.poly());
     }
 
     Polynomial subtract(Polynomial other) {
         return add(other.multiply(-1));
+    }
+
+    Polynomial subtract(Monomial other) {
+        return subtract(other.poly());
     }
 
     Polynomial pow(int n) {
@@ -63,7 +75,7 @@ record Polynomial(List<Monomial> monomials) {
     }
 
     Polynomial multiply(int n) {
-        return new Polynomial(monomials.stream().map(m -> m.multiply(n)).toList());
+        return create(monomials.stream().map(m -> m.multiply(n)).toList());
     }
 
     Polynomial multiply(Polynomial other) {
@@ -73,17 +85,17 @@ record Polynomial(List<Monomial> monomials) {
                 monomials.add(m.multiply(n));
             }
         }
-        return new Polynomial(monomials);
+        return create(monomials);
     }
 
     // r^n == 1
     Polynomial powermod(int n) {
-        return new Polynomial(monomials.stream().map(m -> m.powermod(n)).toList());
+        return create(monomials.stream().map(m -> m.powermod(n)).toList());
     }
 
     // r^n == -1
     Polynomial powermodFlip(int n) {
-        return new Polynomial(monomials.stream().map(m -> m.powermodFlip(n)).toList());
+        return create(monomials.stream().map(m -> m.powermodFlip(n)).toList());
     }
 
     @Override

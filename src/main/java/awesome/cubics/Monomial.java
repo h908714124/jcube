@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static awesome.cubics.Preconditions.checkState;
+import static java.lang.Integer.parseInt;
 
 record Monomial(int coefficient, int power) implements Comparable<Monomial> {
 
@@ -19,7 +20,7 @@ record Monomial(int coefficient, int power) implements Comparable<Monomial> {
     }
 
     Polynomial poly() {
-        return new Polynomial(List.of(this));
+        return Polynomial.create(List.of(this));
     }
 
     Monomial pow(int n) {
@@ -68,8 +69,33 @@ record Monomial(int coefficient, int power) implements Comparable<Monomial> {
         return new Monomial(coefficient, power);
     }
 
-    boolean cancels(Monomial other) {
-        return power == other.power && coefficient + other.coefficient == 0;
+    static Polynomial monomial(String s) {
+        if (s.contains("^")) {
+            String[] tokens = s.split("[\\^]", -1);
+            return new Monomial(getCoefficient(tokens[0]), parseInt(tokens[1])).poly();
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (!Character.isDigit(s.charAt(i))) {
+                return new Monomial(getCoefficient(s), 1).poly();
+            }
+        }
+        return new Monomial(parseInt(s), 0).poly();
+    }
+
+    private static int getCoefficient(String token) {
+        StringBuilder sb = new StringBuilder();
+        char[] chars = token.toCharArray();
+        for (char c : chars) {
+            if (Character.isDigit(c)) {
+                sb.append(c);
+            } else {
+                break;
+            } 
+        }
+        if (sb.length() == 0) {
+            return 1;
+        }
+        return parseInt(sb.toString());
     }
 
     @Override
@@ -78,7 +104,7 @@ record Monomial(int coefficient, int power) implements Comparable<Monomial> {
         if (power == 0) {
             return prefix + Math.abs(coefficient);
         }
-        String base = prefix + " " + (Math.abs(coefficient) == 1 ? "" : Math.abs(coefficient)) + "r";
+        String base = prefix + " " + (Math.abs(coefficient) == 1 ? "" : Math.abs(coefficient)) + "x";
         if (power == 1) {
             return base;
         }
@@ -93,7 +119,7 @@ record Monomial(int coefficient, int power) implements Comparable<Monomial> {
         if (power == 0) {
             return prefix + Math.abs(coefficient);
         }
-        String base = prefix + (Math.abs(coefficient) == 1 ? "" : Math.abs(coefficient)) + "r";
+        String base = prefix + (Math.abs(coefficient) == 1 ? "" : Math.abs(coefficient)) + "x";
         if (power == 1) {
             return base;
         }
