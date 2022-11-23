@@ -33,3 +33,6 @@ b^2 + c = 2 \\
 c^2 + a = 2}$$
 
 ### Viète's substitution
+
+Substitute $x = w + {1 \over w}$
+
