@@ -38,8 +38,7 @@ c^2 + a = 2 \\
 
 ### Viète's substitution
 
-Substitute $ x = w + { 1 \over w } $ 
-then
+Substitute $x = w + { 1 \over w }$, then
 
 $$\displaylines{ 
 y^2 - y + 1 = 0 \\
