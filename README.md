@@ -41,6 +41,6 @@ c^2 + a = 2 \\
 Substitute $ x = w + {1 \over w} $ and $ y = w^3 $, then
 $$\displaylines{ 
 y^2 - y + 1 = 0 \\
-y = { 1 \over 2 } \pm { i \sqrt{3} \over 2 }
+y = { 1 \over 2 } \pm { i \sqrt{3} \over 2 } \\
 }$$
 
