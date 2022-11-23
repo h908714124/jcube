@@ -34,4 +34,12 @@ public sealed interface Expression permits Fraction, Root, Numeral {
         }
         return new Fraction(num, den);
     }
+
+    static Numeral numeral(int n) {
+        return Numeral.create(n);
+    }
+
+    static Numeral numeral(long n) {
+        return numeral(Math.toIntExact(n));
+    }
 }
