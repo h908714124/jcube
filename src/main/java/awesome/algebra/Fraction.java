@@ -1,5 +1,7 @@
 package awesome.algebra;
 
+import org.apache.commons.math3.util.ArithmeticUtils;
+
 public class Fraction {
 
     private final int numerator;
@@ -10,23 +12,27 @@ public class Fraction {
         this.denominator = denominator;
     }
 
-    public static Fraction fraction(int numerator, int denominator) {
-        return new Fraction(numerator, denominator);
+    public static Fraction fraction(int num, int den) {
+        final int d = ArithmeticUtils.gcd(num, den);
+        if (d > 1) {
+            num /= d;
+            den /= d;
+        }
+
+        // move sign to numerator.
+        if (den < 0) {
+            num = -num;
+            den = -den;
+        }
+        return new Fraction(num, den);
     }
 
     public static Fraction wholeNumber(int numerator) {
-        return new Fraction(numerator, 1);
+        return fraction(numerator, 1);
     }
 
     public Fraction mult(Fraction other) {
-        return new Fraction(numerator * other.numerator, denominator * other.denominator);
-    }
-
-    public Fraction simplify() {
-        if (numerator == denominator) {
-            return fraction(1, 1);
-        }
-        return this;
+        return fraction(numerator * other.numerator, denominator * other.denominator);
     }
 
     public boolean isWholeNumber() {
