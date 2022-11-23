@@ -1,41 +1,35 @@
 package awesome.algebra;
 
-import org.apache.commons.math3.util.ArithmeticUtils;
+import java.util.Objects;
 
-public class Fraction {
+public final class Fraction implements Expression {
 
     private final int numerator;
     private final int denominator;
 
-    private Fraction(int numerator, int denominator) {
+    Fraction(int numerator, int denominator) {
         this.numerator = numerator;
         this.denominator = denominator;
     }
 
-    public static Fraction fraction(int num, int den) {
-        final int d = ArithmeticUtils.gcd(num, den);
-        if (d > 1) {
-            num /= d;
-            den /= d;
-        }
-
-        // move sign to numerator.
-        if (den < 0) {
-            num = -num;
-            den = -den;
-        }
-        return new Fraction(num, den);
-    }
-
-    public static Fraction wholeNumber(int numerator) {
-        return fraction(numerator, 1);
-    }
-
     public Fraction mult(Fraction other) {
-        return fraction(numerator * other.numerator, denominator * other.denominator);
+        return Expression.fraction(numerator * other.numerator, denominator * other.denominator);
     }
 
     public boolean isWholeNumber() {
         return denominator == 1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Fraction fraction = (Fraction) o;
+        return numerator == fraction.numerator && denominator == fraction.denominator;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numerator, denominator);
     }
 }

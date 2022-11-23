@@ -1,28 +1,19 @@
 package awesome.algebra;
 
-public class Root {
+public final class Root implements Expression {
 
-    private final Fraction den;
+    private final int den;
     private final int number;
 
+    static Root create(int den, int number) {
+        return new Root(den, number);
+    }
+
     private Root(int den, int number) {
-        this.den = Fraction.fraction(1, den);
+        if (den < 1) {
+            throw new IllegalArgumentException();
+        }
+        this.den = den;
         this.number = number;
-    }
-
-    public static final class Builder {
-        private final int den;
-
-        private Builder(int den) {
-            this.den = den;
-        }
-
-        public Root of(int number) {
-            return new Root(den, number);
-        }
-    }
-
-    public static Builder nthRoot(int den) {
-        return new Builder(den);
     }
 }
