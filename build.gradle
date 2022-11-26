@@ -19,8 +19,9 @@ repositories {
 }
 
 dependencies {
+    implementation('io.github.jbock-java:parmigiano:1.01')
     implementation('org.apache.commons:commons-math3:3.6.1')
-    testImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
+    testImplementation('org.junit.jupiter:junit-jupiter:5.9.0')
 }
 
 test {
