@@ -26,10 +26,6 @@ public enum S3 {
         this.permutation = permutation;
     }
 
-    public Permutation permutation() {
-        return permutation;
-    }
-
     public K4 apply(K4 v) {
         return K4.getValues()[permutation.apply(v.ordinal())];
     }

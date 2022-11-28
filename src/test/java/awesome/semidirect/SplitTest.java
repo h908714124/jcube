@@ -31,4 +31,11 @@ class SplitTest {
                 K4.CHOP_3, K4.CHOP_3);
         assertEquals(S3.SWAP01, S3.valueOf(m::get));
     }
+
+    @Test
+    void phi() {
+        assertEquals(S3.ID, A3.ID.phi());
+        assertEquals(S3.ROT2, A3.ROT1.phi());
+        assertEquals(S3.ROT1, A3.ROT2.phi());
+    }
 }
