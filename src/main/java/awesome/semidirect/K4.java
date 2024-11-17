@@ -8,9 +8,9 @@ import java.util.function.Supplier;
 public enum K4 {
 
     ID(Permutation.identity(), () -> A4.ID),
-    CHOP_1(Permutation.create(0, 1).compose(2, 3), () -> A4.CHOP_1),
-    CHOP_2(Permutation.create(0, 2).compose(1, 3), () -> A4.CHOP_2),
-    CHOP_3(Permutation.create(1, 2).compose(0, 3), () -> A4.CHOP_3);
+    CHOP_1(Permutation.cycle(0, 1).compose(2, 3), () -> A4.CHOP_1),
+    CHOP_2(Permutation.cycle(0, 2).compose(1, 3), () -> A4.CHOP_2),
+    CHOP_3(Permutation.cycle(1, 2).compose(0, 3), () -> A4.CHOP_3);
 
     private static final Supplier<K4[]> VALUES = Suppliers.memoize(K4::values);
 

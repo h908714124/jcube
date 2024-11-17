@@ -4,14 +4,8 @@ plugins {
 
 compileJava {
     options.encoding = 'UTF-8'
-}
-
-
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
 }
 
 repositories {
@@ -19,9 +13,10 @@ repositories {
 }
 
 dependencies {
-    implementation('io.github.jbock-java:parmigiano:1.01')
+    implementation('io.github.jbock-java:parmigiano:1.02')
     implementation('org.apache.commons:commons-math3:3.6.1')
     testImplementation('org.junit.jupiter:junit-jupiter:5.9.0')
+    testRuntimeOnly('org.junit.platform:junit-platform-launcher')
 }
 
 test {

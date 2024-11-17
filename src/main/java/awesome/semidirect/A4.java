@@ -14,34 +14,34 @@ public enum A4 {
             return K4.ID;
         }
     },
-    CHOP_1(Permutation.create(0, 1).compose(2, 3), () -> A3.ID){
+    CHOP_1(Permutation.cycle(0, 1).compose(2, 3), () -> A3.ID){
         @Override
         public K4 inverseBeta() {
             return K4.CHOP_1;
         }
     },
-    CHOP_2(Permutation.create(0, 2).compose(1, 3), () -> A3.ID){
+    CHOP_2(Permutation.cycle(0, 2).compose(1, 3), () -> A3.ID){
         @Override
         public K4 inverseBeta() {
             return K4.CHOP_2;
         }
     },
-    CHOP_3(Permutation.create(1, 2).compose(0, 3), () -> A3.ID){
+    CHOP_3(Permutation.cycle(1, 2).compose(0, 3), () -> A3.ID){
         @Override
         public K4 inverseBeta() {
             return K4.CHOP_3;
         }
     },
     // The coset containing (0,1,2)
-    R0(Permutation.create(0, 1, 2), () -> A3.ROT1),
-    R1(Permutation.create(0, 2, 3), () -> A3.ROT1),
-    R2(Permutation.create(0, 3, 1), () -> A3.ROT1),
-    R3(Permutation.create(1, 3, 2), () -> A3.ROT1),
+    R0(Permutation.cycle(0, 1, 2), () -> A3.ROT1),
+    R1(Permutation.cycle(0, 2, 3), () -> A3.ROT1),
+    R2(Permutation.cycle(0, 3, 1), () -> A3.ROT1),
+    R3(Permutation.cycle(1, 3, 2), () -> A3.ROT1),
     // The coset containing (0,2,1)
-    L0(Permutation.create(0, 2, 1), () -> A3.ROT2),
-    L1(Permutation.create(0, 3, 2), () -> A3.ROT2),
-    L2(Permutation.create(0, 1, 3), () -> A3.ROT2),
-    L3(Permutation.create(1, 2, 3), () -> A3.ROT2);
+    L0(Permutation.cycle(0, 2, 1), () -> A3.ROT2),
+    L1(Permutation.cycle(0, 3, 2), () -> A3.ROT2),
+    L2(Permutation.cycle(0, 1, 3), () -> A3.ROT2),
+    L3(Permutation.cycle(1, 2, 3), () -> A3.ROT2);
 
     private static final Supplier<A4[]> VALUES = Suppliers.memoize(A4::values);
 
