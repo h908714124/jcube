@@ -6,15 +6,10 @@ Let $\omega$ be a primitive 18th root of unity,
 so $\omega^9 = -1$
 and
 $\omega^3 - \omega^6 = 1$. Then
-
-
-$$\displaylines{
-a := \omega^7 - \omega^2 \approx -1.5320888862379558 \\
-b := \omega^5 - \omega^4 \approx -0.3472963553338607 \\
-c := \omega - \omega^8 \approx 1.8793852415718169 \\
-}$$
-
-are the solutions of $x^3 − 3x = 1$.
+$a = \omega^7 - \omega^2$,
+$b = \omega^5 - \omega^4$,
+$c = \omega - \omega^8$
+are the roots of $x^3 − 3x -1$.
 
 $$\displaylines{ (x - a) (x - b) (x - c) \\
 = (x - \omega^7 + \omega^2) (x - \omega^5 + \omega^4) (x - \omega + \omega^8) \\
