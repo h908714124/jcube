@@ -2,14 +2,13 @@
 
 > An example of a Galois group $A_3$ with three elements is given by $p(x) = x^3 − 3x − 1$, whose discriminant is $81 = 9^2$.
 
-Let $\omega$ be a primitive 18th root of unity,
-so $\omega^9 = -1$
-and
-$\omega^3 - \omega^6 = 1$. Then
+Let $\omega$ be a primitive 18th root of unity.
+The roots of $x^3 − 3x -1$ are
 $a = \omega^7 - \omega^2$,
-$b = \omega^5 - \omega^4$,
-$c = \omega - \omega^8$
-are the roots of $x^3 − 3x -1$.
+$b = \omega^5 - \omega^4$ and
+$c = \omega - \omega^8$.
+
+By using $\omega^9 = -1$ and $\omega^3 - \omega^6 = 1$, we compute
 
 $$\displaylines{ (x - a) (x - b) (x - c) \\
 = (x - \omega^7 + \omega^2) (x - \omega^5 + \omega^4) (x - \omega + \omega^8) \\
@@ -23,7 +22,7 @@ $$\displaylines{ (x - a) (x - b) (x - c) \\
 = x^3 - 3 x - 1 \\
 }$$
 
-There are some interesting relations among the roots:
+Besides $abc = 1$ and $a + b + c = 0$, there are these relations among the roots:
 
 $$\displaylines{
 a^2 + b = 2 \\
