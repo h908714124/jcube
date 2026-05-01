@@ -43,7 +43,13 @@ y = { 1 \over 2 } \pm { i \sqrt{3} \over 2 } \\
 
 ```
 K.<a> = CyclotomicField(3).extension(x^3 - 2)
-print(a^3)
+conj = a.galois_conjugates(K)
+b = conj[1]
+c = conj[2]
+print(a)
+print(b)
+print("c: {}".format(c))
+print(a*a + b*b)
 K.absolute_vector_space()
 ```
 
