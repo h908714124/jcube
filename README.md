@@ -39,3 +39,11 @@ y^2 - y + 1 = 0 \\
 y = { 1 \over 2 } \pm { i \sqrt{3} \over 2 } \\
 }$$
 
+### Sage
+
+```
+K = NumberField(x^3 - 3 * x - 1, 'a')
+M = K.galois_closure('b')
+M.absolute_vector_space()
+```
+
