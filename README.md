@@ -49,7 +49,8 @@ c = conj[2]
 print(a)
 print(b)
 print("c: {}".format(c))
-print(a*a + b*b)
+print(c*(a*a + b*b))
+print(c*c*c)
 K.absolute_vector_space()
 ```
 
