@@ -1,6 +1,6 @@
 ### [Cubic equation](https://en.wikipedia.org/wiki/Cubic_equation)
 
-> An example of a Galois group $A_3$ with three elements is given by $p(x) = x^3 − 3x − 1$, whose discriminant is $81 = 9^2$.
+> An example of a Galois group $A\_3$ with three elements is given by $p(x) = x^3 − 3x − 1$, whose discriminant is $81 = 9^2$.
 
 Let $\omega$ be a primitive 18th root of unity.
 The roots of $x^3 − 3x -1$ are
@@ -42,8 +42,8 @@ y = { 1 \over 2 } \pm { i \sqrt{3} \over 2 } \\
 ### Sage
 
 ```
-K = NumberField(x^3 - 3 * x - 1, 'a')
-M = K.galois_closure('b')
-M.absolute_vector_space()
+K.<a> = CyclotomicField(3).extension(x^3 - 2)
+print(a^3)
+K.absolute_vector_space()
 ```
 
